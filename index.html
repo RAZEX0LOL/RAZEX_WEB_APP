@@ -35,17 +35,17 @@
 	
 			<div class='emailForm'>
 				<p>Форма для отправки вашего сообщения</p>
-				<form action="email.php" method='post'>
+				<form action="https://formspree.io/f/mdknzwly" method="POST">
 					<div class='inputs'>
-						<input type="email" placeholder='Введите E-mail:'>
-						<input type="text" placeholder='Введите имя:'>
-						<textarea placeholder='Введите ваше сообщение'></textarea>
+							<input type="email" name="email" placeholder='Введите E-mail:' required>
+							<input type="text" name="name" placeholder='Введите имя:' required>
+							<textarea name="message" placeholder='Введите ваше сообщение' required></textarea>
 					</div>
 					<div class='buttons'>
-						<input type="reset" value="Очистить">
-						<input type="submit" value="Отправить">
+							<input type="reset" value="Очистить">
+							<input type="submit" value="Отправить">
 					</div>
-				</form>
+			</form>
 			</div>
 		</main>
 		<footer>
