@@ -1,24 +1,35 @@
 <?php
-// несколько получателей
-$to  = 'khattayev00@mail.ru' . ', ';  // обратите внимание на запятую
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Collect and sanitize form inputs
+    $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+    $name = filter_var($_POST['name'], FILTER_SANITIZE_STRING);
+    $message = filter_var($_POST['message'], FILTER_SANITIZE_STRING);
 
-// тема письма
-$subject = 'Письмо с моего сайта';
+    // Validate email
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo "Некорректный email";
+        exit;
+    }
 
-// текст письма
-$message = 'Пользователь' . $_POST['name'] . ' отправил вам письмо:<br />' . $_POST['message'] . '<br />
-Связяться с ним можно по email <a href="mailto:' . $_POST['email'] . '">' . $_POST['email'] . '</a>'
-;
+    // Validate name and message
+    if (empty($name) || empty($message)) {
+        echo "Имя и сообщение не могут быть пустыми";
+        exit;
+    }
 
-// Для отправки HTML-письма должен быть установлен заголовок Content-type
-$headers  = 'MIME-Version: 1.0' . "\r\n";
-$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n"; 
+    // Set email parameters
+    $to = "khattayev00@mail.ru";
+    $subject = "Новое сообщение с сайта";
+    $body = "Имя: $name\nEmail: $email\nСообщение:\n$message";
+    $headers = "From: $email";
 
-// Дополнительные заголовки
-$headers .= 'To: Расул <khattayev00@mail.ru>' . "\r\n"; // Свое имя и email
-$headers .= 'From: '  . $_POST['name'] . '<' . $_POST['email'] . '>' . "\r\n";
-
-
-// Отправляем
-mail($to, $subject, $message, $headers);
+    // Send email
+    if (mail($to, $subject, $body, $headers)) {
+        echo "Сообщение отправлено успешно!";
+    } else {
+        echo "Произошла ошибка при отправке сообщения.";
+    }
+} else {
+    echo "Неверный запрос";
+}
 ?>
