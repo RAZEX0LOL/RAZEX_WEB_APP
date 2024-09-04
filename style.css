@@ -409,6 +409,10 @@ footer > p{
 		width: 60%;
 		font-size: 22px;
 	}
+	
+	.links > div > a{
+		font-size: 20px;
+	}
 
 	.slider{
 		width: 80%;

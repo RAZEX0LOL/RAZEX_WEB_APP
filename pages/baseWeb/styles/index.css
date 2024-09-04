@@ -31,7 +31,7 @@ body{
 	justify-content: space-around;
 }
 .links > a{
-	width: 30%;
+	width: 20%;
 	height: 100%;
 	text-align: center;
 	align-content: center;
@@ -43,4 +43,31 @@ body{
 	border-radius: 15px;
 	padding: 20px;
 	margin: 20px 0;
+}
+
+@media screen and (max-width:1440px){
+	.info{
+		width: 80%;
+	}
+}
+
+@media screen and (max-width:768px){
+	.info{
+		font-size: 26px;
+	}
+
+	.links > a{
+		width: 30%;
+	}
+}
+
+@media screen and (max-width: 425px){
+
+	.info{
+		width: ;
+	}
+
+	.links > a {
+		width: 60%;
+	}
 }
